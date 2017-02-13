@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
+
+    <link rel="shortcut icon" href="images/favicon_1.ico">
+
+    <title>Minton - Responsive Admin Dashboard Template</title>
+
+    <link href="/css/switchery.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/core.css" rel="stylesheet" type="text/css">
+    <link href="/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="/css/components.css" rel="stylesheet" type="text/css">
+    <link href="/css/pages.css" rel="stylesheet" type="text/css">
+    <link href="/css/menu.css" rel="stylesheet" type="text/css">
+    <link href="/css/responsive.css" rel="stylesheet" type="text/css">
+
+    <script src="/js/modernizr.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <title>Home</title>
+</head>
+<body class="fixed-left">
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Top Bar Start -->
+    <div class="topbar">
+
+        <!-- LOGO -->
+        <div class="topbar-left">
+            <div class="text-center">
+                <a href="/" class="logo"><i class="md md-equalizer"></i> <span>WePlay</span> </a>
+            </div>
+        </div>
+
+        <!-- Navbar -->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="">
+                    <ul class="nav navbar-nav navbar-right pull-right">
+                        <form action="/logout" method="post">
+                            <button class="btn btn-danger btn-sm" type="submit">logout</button>
+                        </form>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <!-- Top Bar End -->
+
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <h4 class="page-title">Profile</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-4">
+                        <div class="text-center card-box">
+                            <div class="member-card">
+                                {{#user}}
+
+                                <div class="">
+                                    <h4 class="m-b-5">{{username}}</h4>
+                                    <p class="text-muted"></p>
+                                </div>
+
+
+
+                                <div class="text-left m-t-40">
+                                    <p class="text-muted font-13"><strong>Full Name :</strong> <span class="m-l-15">{{nameFirst}} {{nameLast}}</span></p>
+
+                                    <p class="text-muted font-13"><strong>Mobile : </strong><span class="m-l-15">{{phone}}</span></p>
+
+                                    <p class="text-muted font-13"><strong>Email :</strong> <span class="m-l-15">{{email}}</span></p>
+
+                                    <p class="text-muted font-13"><strong>bio :</strong> <span class="m-l-15">{{bio}}</span></p>
+
+                                    <p class="text-muted font-13"><strong>sex :</strong> <span class="m-l-15">{{sex}}</span></p>
+
+                                    <p class="text-muted font-13"><strong>age :</strong> <span class="m-l-15">{{age}}</span></p>
+
+                                    <p class="text-muted font-13"><strong>skill score  :</strong> <span class="m-l-15">{{skillAvg}}</span></p>
+
+                                    <p class="text-muted font-13"><strong>friendliness score :</strong> <span class="m-l-15">{{friendAvg}}</span></p>
+                                </div>
+                                {{/user}}
+
+                            </div>
+
+                        </div> <!-- end card-box -->
+
+                    </div> <!-- end col -->
+
+
+                    <div class="col-md-8 col-lg-9">
+                        <div class="">
+                            <div class="">
+                                <ul class="nav nav-tabs navtab-custom">
+                                    <li class="">
+                                        <a href="#start-match" data-toggle="tab" aria-expanded="true">
+                                            <span class="visible-xs"><i class="fa fa-user"></i></span>
+                                            <span class="hidden-xs">Find Match</span>
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#profile" data-toggle="tab" aria-expanded="false">
+                                            <span class="visible-xs"><i class="fa fa-photo"></i></span>
+                                            <span class="hidden-xs">Pending Matches</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#addGame" data-toggle="tab" aria-expanded="false">
+                                            <span class="visible-xs"><i class="fa fa-cog"></i></span>
+                                            <span class="hidden-xs">Settings</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="start-match">
+                                        <p class="text-center">Enter your gamer tag and select your game below</p>
+                                       {{#user.games}}<ul>
+                                        <form action="/start-match" method="post">
+                                            <input type="hidden" name="id" value="{{id}}">
+                                            <p class="text-center"><input class="form-control "type="text" name="gamerTag" placeholder="gamerTag"></p>
+                                            <p><button type="submit" class="btn btn-block btn-success waves-effect">{{name}} on {{platform}}</button></p>
+                                        </form>
+                                    </ul>{{/user.games}}
+                                    </div>
+                                    {{#matches}}
+                                    <div class="tab-pane active" id="profile">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="gal-detail thumb">
+                                                    <h4 class="text-center">{{pickedGame.name}}</h4>
+                                                    <div class="ga-border"></div>
+                                                    <p class="text-muted text-center"><small>{{playerOne.username}}</small></p>
+                                                    <p class="text-muted text-center"><small>{{pickedGame.platform}}</small></p>
+                                                    <p class="text-muted text-center"><small>Friendliness: {{playerOne.friendAvg}}</small></p>
+                                                    <p class="text-muted text-center"><small>Skill: {{playerOne.skillAvg}}</small></p>
+
+                                                    <form action="/start-match" method="post">
+                                                        <input type="hidden" name="id" value="{{pickedGame.id}}">
+                                                        <input type="text" class="form-control" name="gamerTag" placeholder="gamerTag">
+                                                        <button type="submit" class="btn btn-warning waves-effect waves-light m-b-5">
+                                                            <i class="fa fa-rocket m-r-5"></i> <span>Match</span></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/matches}}
+
+
+                                    <div class="tab-pane" id="addGame">
+                                        <p class="text-center">Click on game to add it to your list of games</p>
+                                        {{#games}}
+                                        <form action="/add-Games" method="post">
+                                            <input type="hidden" name="id" value="{{id}}">
+                                            <p><button type="submit" class="btn btn-block btn-purple waves-effect">{{name}} on {{platform}}</button></p>
+                                        </form></p>
+
+                                        {{/games}}
+                                        <form action="/addgame" method="post">
+                                            <input type="text" placeholder="name" name="name">
+                                            <input type="text" placeholder="platform" name="platform">
+                                            <input type="text" placeholder="max party size" name="playerCount">
+                                            <button type="submit">add game</button>
+                                        </form>
+                                        <p class="text-center">Games you already added:</p>
+                                        {{#user.games}}
+                                        <p><button type="button" class="btn btn-block btn-green waves-effect">{{name}} for {{platform}}</button></p>
+                                        {{/user.games}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+
+
+
+            </div>
+            <!-- end container -->
+
+        </div>
+        <!-- end content -->
+
+
+
+        <!-- FOOTER -->
+        <footer class="footer text-right">
+            2017 © Minton.
+        </footer>
+        <!-- End FOOTER -->
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Right content here -->
+    <!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+
+
+<script>
+    var resizefunc = [];
+</script>
+
+<!-- jQuery  -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/detect.js"></script>
+<script src="/js/fastclick.js"></script>
+<script src="/js/jquery.slimscroll.js"></script>
+<script src="/js/jquery.blockUI.js"></script>
+<script src="/js/waves.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/jquery.nicescroll.js"></script>
+<script src="/js/jquery.scrollTo.min.js"></script>
+<script src="/js/switchery.min.js"></script>
+
+<script src="/js/jquery.core.js"></script>
+<script src="/js/jquery.app.js"></script>
+
+</body>
+</html>

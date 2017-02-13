@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add games</title>
+</head>
+<body>
+{{#games}}
+<p><a href="/game-detail/{{id}}"> {{name}}</a>, {{platform}}, {{playerCount}} <form action="/delete-game" method="post">
+    <input type="hidden" name="id" value="{{id}}">
+    <button type="submit">delete</button>
+</form>
+<form action="/add-Games" method="post">
+    <input type="hidden" name="id" value="{{id}}">
+    <button type="submit">add game</button>
+
+</form></p>
+
+{{/games}}
+
+
+
+
+<form action="/addgame" method="post">
+    <input type="text" placeholder="name" name="name">
+    <input type="text" placeholder="platform" name="platform">
+    <input type="text" placeholder="max party size" name="playerCount">
+    <button type="submit">add game</button>
+</form>
+
+<a href="/">home</a>
+
+
+hello{{user.username}}{{#user.games}}<ul>
+    <li>{{name}}, {{platform}}</li>
+</ul>{{/user.games}}
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>detail</title>
+</head>
+<body>
+{{#games}}
+<p>{{name}}, {{platform}}, {{playerCount}}</p>
+
+<h3>modes:</h3>
+<ul>
+    {{#modes}}
+    <li>{{mode}}</li>
+    {{/modes}}
+</ul>
+<form action="/create-mode" method="post">
+    <input type="hidden" name="id" value="{{id}}">
+    <input type="text" placeholder="mode" name="mode">
+    <button type="submit">submit</button>
+</form>
+
+{{/games}}
+
+
+</body>
+</html>
