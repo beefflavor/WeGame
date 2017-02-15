@@ -11,8 +11,6 @@ public class RegisterCommand {
     @Size(max = 25)
     private String nameLast;
     @Size(max = 1000)
-    private String pictureUrl;
-    @Size(max = 1000)
     private String bio;
     @Size(max = 50)
     private String email;
@@ -40,14 +38,6 @@ public class RegisterCommand {
 
     public void setNameLast(String nameLast) {
         this.nameLast = nameLast;
-    }
-
-    public String getPictureUrl() {
-        return pictureUrl;
-    }
-
-    public void setPictureUrl(String pictureUrl) {
-        this.pictureUrl = pictureUrl;
     }
 
     public String getBio() {

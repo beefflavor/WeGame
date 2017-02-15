@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface ModeRepository extends JpaRepository<Mode, Integer>{
     List<Mode> findByGame(Game game);
+    Mode findFirstByMode (String mode);
 }

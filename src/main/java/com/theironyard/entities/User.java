@@ -21,9 +21,6 @@ public class User {
     private String nameLast;
 
     @Column(nullable = false)
-    private String pictureUrl;
-
-    @Column(nullable = false)
     private String bio;
 
     @Column(nullable = false, unique = true)
@@ -60,11 +57,10 @@ public class User {
 
     public User() {
     }
-    public User(String nameFirst, String nameLast, String pictureUrl, String bio, String email, String phone, String sex,
+    public User(String nameFirst, String nameLast, String bio, String email, String phone, String sex,
                 String username, String password, String age) {
         this.nameFirst = nameFirst;
         this.nameLast = nameLast;
-        this.pictureUrl = pictureUrl;
         this.bio = bio;
         this.email = email;
         this.phone =phone;
@@ -75,11 +71,10 @@ public class User {
 
     }
 
-    public User(String nameFirst, String nameLast, String pictureUrl, String bio, String email, String phone, String sex,
+    public User(String nameFirst, String nameLast, String bio, String email, String phone, String sex,
                 String username, String password, int age) {
         this.nameFirst = nameFirst;
         this.nameLast = nameLast;
-        this.pictureUrl = pictureUrl;
         this.bio = bio;
         this.email = email;
         this.phone = phone;
@@ -112,14 +107,6 @@ public class User {
 
     public void setNameLast(String nameLast) {
         this.nameLast = nameLast;
-    }
-
-    public String getPictureUrl() {
-        return pictureUrl;
-    }
-
-    public void setPictureUrl(String pictureUrl) {
-        this.pictureUrl = pictureUrl;
     }
 
     public String getBio() {

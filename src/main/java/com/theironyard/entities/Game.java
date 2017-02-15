@@ -19,25 +19,15 @@ public class Game {
     @Column(nullable = false)
     private String platform;
 
-    @Column(nullable = false)
-    private int playerCount;
-
     @ManyToMany
     private List<Mode> modes;
 
     public Game() {
     }
 
-    public Game(String name, String platform, String playerCount){
+    public Game(String name, String platform) {
         this.name = name;
         this.platform = platform;
-        this.playerCount = Integer.parseInt(playerCount);
-    }
-
-    public Game(String name, String platform, int playerCount) {
-        this.name = name;
-        this.platform = platform;
-        this.playerCount = playerCount;
     }
 
     public int getId() {
@@ -64,13 +54,6 @@ public class Game {
         this.platform = platform;
     }
 
-    public int getPlayerCount() {
-        return playerCount;
-    }
-
-    public void setPlayerCount(int playerCount) {
-        this.playerCount = playerCount;
-    }
 
     public Collection<Mode> getModes() {
         return modes;

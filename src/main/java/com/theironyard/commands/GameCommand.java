@@ -6,7 +6,6 @@ package com.theironyard.commands;
 public class GameCommand {
     private String name;
     private String platform;
-    private String playerCount;
 
     public String getName() {
         return name;
@@ -22,13 +21,5 @@ public class GameCommand {
 
     public void setPlatform(String platform) {
         this.platform = platform;
-    }
-
-    public String getPlayerCount() {
-        return playerCount;
-    }
-
-    public void setPlayerCount(String playerCount) {
-        this.playerCount = playerCount;
     }
 }

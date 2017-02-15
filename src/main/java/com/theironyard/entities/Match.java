@@ -33,7 +33,7 @@ public class Match {
     public Match(){}
 
 
-    public Match(User playerOne, Game pickedGame) {
+    public Match(User playerOne, Game pickedGame, Mode pickedMode) {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
         this.pickedGame = pickedGame;

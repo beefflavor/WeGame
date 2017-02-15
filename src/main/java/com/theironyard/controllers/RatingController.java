@@ -32,6 +32,15 @@ public class RatingController {
     @Autowired
     MatchRepository matchRepository;
 
+    /**
+     * grabs the id form the path to use for finding a match. finds a user with session and sees if that user is player
+     * one or player two and adds the other user with model. the user form the session becomes the creator in the rating
+     * object.
+     * @param Model
+     * @param session
+     * @param Id
+     * @return
+     */
     @RequestMapping(path = "/create-rating/{Id}", method = RequestMethod.GET)
     public String getUser(Model Model, HttpSession session,@PathVariable int Id){
         if(session.getAttribute(SESSION_USERNAME) == null){
@@ -49,6 +58,14 @@ public class RatingController {
         return "create-rating";
     }
 
+    /**
+     * Using the ratingCommand to create a rating. takes in an id form userId and uses that id and the session user to
+     * make a new rating and saves it.
+     * @param command
+     * @param session
+     * @param userId
+     * @return
+     */
     @RequestMapping(path = "/create-rating", method = RequestMethod.POST)
     public String createRating(RatingCommand command, HttpSession session, int userId){
         User user = userRepository.findOne(userId);

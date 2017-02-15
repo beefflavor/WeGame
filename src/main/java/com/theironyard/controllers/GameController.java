@@ -38,6 +38,12 @@ public class GameController {
     @Autowired
     ModeRepository modeRepository;
 
+    /**
+     * finds user by the session username and gets a list of all the games and passes to addgame using model.
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(path = "/addgame", method = RequestMethod.GET)
     public String home(HttpSession session,Model model) {
 
@@ -49,6 +55,13 @@ public class GameController {
 
         return "addgame";
     }
+
+    /**
+     * takes an id form the path and finds a game and passes it to game-detail using model.
+     * @param model
+     * @param gameId
+     * @return
+     */
     @RequestMapping(path = "/game-detail/{gameId}", method = RequestMethod.GET)
     public String gameDetail(Model model, @PathVariable int gameId){
         Game game = gameRepository.findOne(gameId);
@@ -58,18 +71,30 @@ public class GameController {
         return "game-detail";
     }
 
+    /**
+     * finds a user with the session username. uses GameComand to create a new game and saves and returns to slash.
+     * @param session
+     * @param command
+     * @return
+     */
     @RequestMapping(path = "/addgame", method = RequestMethod.POST)
     public String addGame(HttpSession session, GameCommand command) {
         if (session.getAttribute(SESSION_USERNAME) == null) {
             return "redirect:/login";
         }
-        Game game = new Game(command.getName(), command.getPlatform(), command.getPlayerCount());
+        Game game = new Game(command.getName(), command.getPlatform());
         gameRepository.save(game);
 
         return "redirect:/";
 
     }
 
+    /**
+     * takes an id and finds a game and uses that game to get a list of modes and deletes the game and modes and
+     * returns to slash.
+     * @param id
+     * @return
+     */
     @RequestMapping(path = "/delete-game", method = RequestMethod.POST)
     public String deleteGame(int id){
         Game game = gameRepository.findOne(id);
@@ -79,6 +104,13 @@ public class GameController {
         return "redirect:/";
     }
 
+    /**
+     * finds a user using session username. uses an id to find a game and adds the game to a list of games that the
+     * user has.then returns to slash.
+     * @param session
+     * @param id
+     * @return
+     */
     @RequestMapping(path = "add-Games", method = RequestMethod.POST)
     public String addGame(HttpSession session, int id){
         User user = userRepository.findFirstByUsername((String) session.getAttribute(UserController.SESSION_USERNAME));
@@ -91,6 +123,14 @@ public class GameController {
         userRepository.save(user);
         return "redirect:/";
     }
+
+    /**
+     * takes a id to find a game and grab the list of modes.then uses ModeCommand to create a new mode and save the mode
+     * and the game and returns to the game-detail page of that game.
+     * @param command
+     * @param id
+     * @return
+     */
     @RequestMapping(path = "/create-mode", method = RequestMethod.POST)
     public String createMode(ModeCommand command, int id){
         Game game = gameRepository.findOne(id);
@@ -99,7 +139,7 @@ public class GameController {
         modeRepository.save(mode);
         modes.add(mode);
         gameRepository.save(game);
-        return "redirect:/addgame";
+        return "redirect:/game-detail/" + id;
     }
 
 }
