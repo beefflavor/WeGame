@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -Dspring.datascource.url=$JDBC_DATABASE_URL -jar build/libs/wePlay-0.0.1-SNAPSHOT.jar
