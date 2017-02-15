@@ -215,6 +215,7 @@
                                         </form></p>
 
                                         {{/nonUserGames}}
+                                        <!--this is not for users only used to add games to database.-->
                                         <form action="/addgame" method="post">
                                             <input type="text" placeholder="name" name="name">
                                             <input type="text" placeholder="platform" name="platform">
@@ -245,6 +246,7 @@
     <!-- ============================================================== -->
     <!-- End Right content here -->
     <!-- ============================================================== -->
+    <!--this block of code is only for going to game detail. will not be used by users.-->
     {{#games}}
     <p><a href="/game-detail/{{id}}">{{name}}: </a>{{platform}}.</p>
     {{/games}}
