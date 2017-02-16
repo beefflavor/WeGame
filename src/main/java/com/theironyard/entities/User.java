@@ -47,11 +47,13 @@ public class User {
 
     private double skillAvg;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Game> games;
 
     @OneToMany
     private List<Rating> ratings;
+
+
 
 
 
@@ -203,4 +205,6 @@ public class User {
     public void setSkillAvg(double skillAvg) {
         this.skillAvg = skillAvg;
     }
+
+
 }

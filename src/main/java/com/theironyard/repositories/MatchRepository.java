@@ -16,5 +16,4 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
     List<Match> findByIsMatchedAndPickedGameAndPickedMode(boolean isMatched, Game game, Mode mode);
     List<Match> findByIsMatched(boolean isMatched);
     Match findFirstByIsMatchedAndPlayerOne(boolean isMatched, User user);
-
 }

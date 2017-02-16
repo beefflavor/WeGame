@@ -36,10 +36,10 @@ public class RatingController {
      * grabs the id form the path to use for finding a match. finds a user with session and sees if that user is player
      * one or player two and adds the other user with model. the user form the session becomes the creator in the rating
      * object.
-     * @param Model
-     * @param session
-     * @param Id
-     * @return
+     * @param Model to be passed to the view
+     * @param session current httpSession
+     * @param Id to find a match
+     * @return create-rating
      */
     @RequestMapping(path = "/create-rating/{Id}", method = RequestMethod.GET)
     public String getUser(Model Model, HttpSession session,@PathVariable int Id){
@@ -61,10 +61,10 @@ public class RatingController {
     /**
      * Using the ratingCommand to create a rating. takes in an id form userId and uses that id and the session user to
      * make a new rating and saves it.
-     * @param command
-     * @param session
-     * @param userId
-     * @return
+     * @param command passes the criteria necessary to make a rating
+     * @param session current HttpSession
+     * @param userId to find a user
+     * @return to home page
      */
     @RequestMapping(path = "/create-rating", method = RequestMethod.POST)
     public String createRating(RatingCommand command, HttpSession session, int userId){

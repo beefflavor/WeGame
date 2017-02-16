@@ -40,9 +40,9 @@ public class GameController {
 
     /**
      * finds user by the session username and gets a list of all the games and passes to addgame using model.
-     * @param session
-     * @param model
-     * @return
+     * @param session current httpSession
+     * @param model to be passed to the view
+     * @return model
      */
     @RequestMapping(path = "/addgame", method = RequestMethod.GET)
     public String home(HttpSession session,Model model) {
@@ -58,9 +58,9 @@ public class GameController {
 
     /**
      * takes an id form the path and finds a game and passes it to game-detail using model.
-     * @param model
-     * @param gameId
-     * @return
+     * @param model to be passed to the view
+     * @param gameId to find the game
+     * @return model and the game-detail page
      */
     @RequestMapping(path = "/game-detail/{gameId}", method = RequestMethod.GET)
     public String gameDetail(Model model, @PathVariable int gameId){
@@ -73,9 +73,9 @@ public class GameController {
 
     /**
      * finds a user with the session username. uses GameComand to create a new game and saves and returns to slash.
-     * @param session
-     * @param command
-     * @return
+     * @param session Current session
+     * @param command passes the criteria necessary to make a game
+     * @return to home page
      */
     @RequestMapping(path = "/addgame", method = RequestMethod.POST)
     public String addGame(HttpSession session, GameCommand command) {
@@ -92,8 +92,8 @@ public class GameController {
     /**
      * takes an id and finds a game and uses that game to get a list of modes and deletes the game and modes and
      * returns to slash.
-     * @param id
-     * @return
+     * @param id id of a game
+     * @return to home page
      */
     @RequestMapping(path = "/delete-game", method = RequestMethod.POST)
     public String deleteGame(int id){
@@ -107,9 +107,9 @@ public class GameController {
     /**
      * finds a user using session username. uses an id to find a game and adds the game to a list of games that the
      * user has.then returns to slash.
-     * @param session
-     * @param id
-     * @return
+     * @param session current httpSession
+     * @param id of a game
+     * @return home page
      */
     @RequestMapping(path = "add-Games", method = RequestMethod.POST)
     public String addGame(HttpSession session, int id){
@@ -127,9 +127,9 @@ public class GameController {
     /**
      * takes a id to find a game and grab the list of modes.then uses ModeCommand to create a new mode and save the mode
      * and the game and returns to the game-detail page of that game.
-     * @param command
-     * @param id
-     * @return
+     * @param command passes the criteria necessary to make a Mode
+     * @param id to find a Game
+     * @return to a game detail page with the game selected
      */
     @RequestMapping(path = "/create-mode", method = RequestMethod.POST)
     public String createMode(ModeCommand command, int id){

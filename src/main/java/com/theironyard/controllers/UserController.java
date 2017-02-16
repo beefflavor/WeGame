@@ -48,9 +48,9 @@ public class UserController {
      * then it finds all the games that the user has and finds all the games the user dose not have. after that it uses
      * models to add games the users doesn't have, a match that user may have, sets username form the session, sets the user
      * form session, and passes all the games in the database to the home page.
-     * @param session
-     * @param model
-     * @return
+     * @param session current httpSession
+     * @param model to be passed to a view
+     * @return home
      */
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(HttpSession session, Model model){
@@ -104,8 +104,8 @@ public class UserController {
 
     /**
      * get method for the login page and returns to login.
-     * @param session
-     * @return
+     * @param session current httpSession
+     * @return login
      */
     @RequestMapping(path = "/login", method = RequestMethod.GET)
     public String getLogin(HttpSession session){
@@ -117,7 +117,7 @@ public class UserController {
 
     /**
      * get method for the registration page and returns registration.
-     * @return
+     * @return registration
      */
     @RequestMapping(path = "/registration", method = RequestMethod.GET)
     public String getRegistration(){
@@ -128,11 +128,11 @@ public class UserController {
     /**
      * uses the LoginCommand to log in a user and set the session's username after it first checks the users password
      * using passwordStorage.verifyPassword
-     * @param session
-     * @param command
-     * @return
-     * @throws PasswordStorage.InvalidHashException
-     * @throws PasswordStorage.CannotPerformOperationException
+     * @param session current httpSession
+     * @param command passes the criteria necessary to login in
+     * @return home page
+     * @throws PasswordStorage.InvalidHashException if something goes wrong with verifying the password
+     * @throws PasswordStorage.CannotPerformOperationException if something goes wrong with verifying the password
      */
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public String login(HttpSession session, LoginCommand command) throws PasswordStorage.InvalidHashException, PasswordStorage.CannotPerformOperationException {
@@ -151,10 +151,10 @@ public class UserController {
     /**
      * checks to see if user is in the session is null or not.then creates a new user using the RegisterCommand.sets the
      * new user in the session and returns to slash.
-     * @param session
-     * @param command
-     * @return
-     * @throws PasswordStorage.CannotPerformOperationException
+     * @param session current httpSession
+     * @param command passes the criteria necessary to make a user
+     * @return home page
+     * @throws PasswordStorage.CannotPerformOperationException if something goes wrong with creating/saving a new password hash
      */
     @RequestMapping(path = "/registration", method = RequestMethod.POST)
     public String createUser(HttpSession session, RegisterCommand command) throws PasswordStorage.CannotPerformOperationException {
@@ -172,8 +172,8 @@ public class UserController {
 
     /**
      * logs the user out by invalidating the session.
-     * @param session
-     * @return
+     * @param session current httpSession
+     * @return home page
      */
     @RequestMapping(path = "/logout", method = RequestMethod.POST)
     public String logout(HttpSession session){

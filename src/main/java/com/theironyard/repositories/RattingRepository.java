@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface RattingRepository extends JpaRepository<Rating, Integer>{
     List<Rating> findAllByUser(User user);
+    Rating findFirstByUser(User user);
 }

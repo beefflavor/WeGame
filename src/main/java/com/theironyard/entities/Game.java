@@ -1,5 +1,8 @@
 package com.theironyard.entities;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
@@ -19,7 +22,8 @@ public class Game {
     @Column(nullable = false)
     private String platform;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Mode> modes;
 
     public Game() {
@@ -61,5 +65,16 @@ public class Game {
 
     public void setModes(List<Mode> modes) {
         this.modes = modes;
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(obj == this){
+            return true;
+        }
+        if(!(obj instanceof Game)){
+            return false;
+        }
+        Game game = (Game) obj;
+        return game.getName().equals(this.name);
     }
 }

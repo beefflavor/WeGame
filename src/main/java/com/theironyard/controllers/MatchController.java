@@ -48,9 +48,9 @@ public class MatchController{
 
     /**
      * finds a user with the session username and adds that user to start match and adds all the games with models.
-     * @param session
-     * @param model
-     * @return
+     * @param session current HttpSession
+     * @param model to be passed to view
+     * @return to start-match
      */
     @RequestMapping(path = "/start-match",method = RequestMethod.GET)
     public String startMatch(HttpSession session, Model model){
@@ -65,10 +65,10 @@ public class MatchController{
 
     /**get method that takes the match id the is pasted to it and finds that make and passes it along with models to
      * found page.
-     * @param session
-     * @param model
-     * @param matchId
-     * @return
+     * @param session current httpSession
+     * @param model to be passed to view
+     * @param matchId to find a match
+     * @return to found
      */
     @RequestMapping(path = "/found/{matchId}", method = RequestMethod.GET)
     public String found(HttpSession session, Model model, int matchId){
@@ -86,16 +86,15 @@ public class MatchController{
      * not player one. if the session user fits into that he/she is set as player two and ismatched is set to true and
      * saved.then using twilio the program will text both players to let them know we have found them a match.if a match
      * if found user will be redirected to the found page. if not the user is sent to the looking page.
-     * @param session
-     * @param id
-     * @param redirectAttributes
-     * @param gamerTag
-     * @param mode
-     * @return
-     * @throws InterruptedException
+     * @param session current httpSession
+     * @param id to find a game
+     * @param redirectAttributes to send the match attributes found page
+     * @param gamerTag to set the gamer tag
+     * @param mode to se the mode
+     * @return found page of the match or looking page
      */
     @RequestMapping(path = "/start-match", method = RequestMethod.POST)
-    public String findMatch(HttpSession session, int id, RedirectAttributes redirectAttributes, String gamerTag, String mode) throws InterruptedException {
+    public String findMatch(HttpSession session, int id, RedirectAttributes redirectAttributes, String gamerTag, String mode){
         Game selectedGame = gameRepository.findOne(id);
         User player = userRepository.findFirstByUsername((String) session.getAttribute(SESSION_USERNAME));
         Mode pickedMode = modeRepository.findFirstByMode(mode);
@@ -128,8 +127,8 @@ public class MatchController{
     /**
      * finds a match by the id that is passed in and sets ismatched to true and saves it. so it stops the program form
      * looking for a match. returns users to slash.
-     * @param id
-     * @return
+     * @param id to find a match
+     * @return to home page
      */
     @RequestMapping(path = "/stop", method = RequestMethod.POST)
     public String stop(int id){
@@ -142,10 +141,10 @@ public class MatchController{
     /**
      * using the path it takes an id and finds a match with it. checks to see if isMatched is true. if it is, it will
      * redirect the attributes of the match to the found page. if not it will return to the looking page.
-     * @param matchId
-     * @param model
-     * @param redirectAttributes
-     * @return
+     * @param matchId to find a match
+     * @param model to be passed to view
+     * @param redirectAttributes to send the match attributes to found page
+     * @return looking page or found page
      */
     @RequestMapping(path = "/looking/{matchId}", method = RequestMethod.GET)
     public String looking(@PathVariable int matchId, Model model, RedirectAttributes redirectAttributes){
